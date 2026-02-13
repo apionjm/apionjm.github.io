@@ -13,27 +13,48 @@
     color:#00f0ff;
     padding:1em;
   }
+
   h1,h2,h3 { text-align:center; margin-bottom:0.5em; }
+
+  /* GRID LAYOUT FOR DASHBOARD */
+  .dashboard {
+    display: grid;
+    grid-template-columns: 1fr; /* single column mobile default */
+    gap: 1.5em;
+  }
+
+  @media (min-width: 900px) {
+    .dashboard {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on desktop */
+    }
+  }
+
+  @media (min-width: 1300px) {
+    .dashboard {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns wide screens */
+    }
+  }
+
   section {
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    margin-bottom:2em;
     padding:1em;
-    border-radius:6px;
-    min-height:3em;
+    border-radius:8px;
+    min-height:4em;
     transition: border 0.5s ease;
-  }
-  .panel {
-    border: none; /* hidden initially */
-    max-width:900px;
-    width:100%;
     background: #1a1a1a;
   }
-  .panel.loaded {
-    border: 2px solid #00f0ff; /* show border once loaded */
+
+  .panel {
+    border: none; /* hidden initially */
   }
+
+  .panel.loaded {
+    border: 2px solid #00f0ff;
+  }
+
   pre {
     background: transparent;
     padding:0.5em;
@@ -42,56 +63,70 @@
     font-size:1em;
     width:100%;
   }
+
   .tech img, .badges img {
     height:35px;
     margin:0.3em;
   }
+
+  /* Optional: center header full width */
+  #header {
+    grid-column: 1 / -1;
+  }
+
+  /* Optional: footer full width */
+  .footer {
+    grid-column: 1 / -1;
+  }
+
 </style>
 </head>
 <body>
 
-<section id="header" class="panel">
-  <h1 id="headerText"></h1>
-  <div id="typingHeader"></div>
-  <div class="badges" id="badges"></div>
-</section>
+<div class="dashboard">
+  <section id="header" class="panel">
+    <h1 id="headerText"></h1>
+    <div id="typingHeader"></div>
+    <div class="badges" id="badges"></div>
+  </section>
 
-<section id="boot" class="panel">
-  <pre id="bootText"></pre>
-</section>
+  <section id="boot" class="panel">
+    <pre id="bootText"></pre>
+  </section>
 
-<section id="whoami" class="panel">
-  <pre id="whoText"></pre>
-</section>
+  <section id="whoami" class="panel">
+    <pre id="whoText"></pre>
+  </section>
 
-<section id="metrics" class="panel">
-  <h2 id="metricsTitle"></h2>
-  <div id="metricsImages"></div>
-</section>
+  <section id="metrics" class="panel">
+    <h2 id="metricsTitle"></h2>
+    <div id="metricsImages"></div>
+  </section>
 
-<section id="tech" class="panel">
-  <h2 id="techTitle"></h2>
-  <div class="tech" id="techIcons"></div>
-</section>
+  <section id="tech" class="panel">
+    <h2 id="techTitle"></h2>
+    <div class="tech" id="techIcons"></div>
+  </section>
 
-<section id="protocol" class="panel">
-  <h2 id="protocolTitle"></h2>
-  <pre id="protocolText"></pre>
-</section>
+  <section id="protocol" class="panel">
+    <h2 id="protocolTitle"></h2>
+    <pre id="protocolText"></pre>
+  </section>
 
-<section id="operations" class="panel">
-  <h2 id="opsTitle"></h2>
-  <pre id="opsText"></pre>
-</section>
+  <section id="operations" class="panel">
+    <h2 id="opsTitle"></h2>
+    <pre id="opsText"></pre>
+  </section>
 
-<section id="connect" class="panel">
-  <h2 id="connectTitle"></h2>
-  <pre id="connectText"></pre>
-</section>
+  <section id="connect" class="panel">
+    <h2 id="connectTitle"></h2>
+    <pre id="connectText"></pre>
+  </section>
 
-<section class="footer panel">
-  <h3 id="footerText"></h3>
-</section>
+  <section class="footer panel">
+    <h3 id="footerText"></h3>
+  </section>
+</div>
 
 <script>
   function typeText(element, text, speed=30, callback) {
@@ -103,7 +138,6 @@
         i++;
         setTimeout(typing, speed);
       } else {
-        // mark panel as loaded after typing finishes
         const parentPanel = element.closest('.panel');
         if(parentPanel) parentPanel.classList.add('loaded');
         if (callback) callback();
