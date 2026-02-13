@@ -6,19 +6,22 @@
   <title>Oshayne | Apion</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset & basics */
+    /* RESET & BASICS */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background-color: #0d0d0d;
       color: #00ff00;
       scroll-behavior: smooth;
+      line-height: 1.6;
     }
     a { color: #00ff00; text-decoration: none; }
-    img { max-width: 100%; height: auto; }
-    h1, h2, h3 { text-align: center; }
+    img { max-width: 100%; display: block; }
 
-    /* Header */
+    h1, h2, h3 { text-align: center; font-weight: 700; }
+    h1 { font-family: 'Fira Code', monospace; font-size: 3em; margin-bottom: 1em; }
+
+    /* HEADER */
     header {
       display: flex;
       flex-direction: column;
@@ -27,56 +30,67 @@
       min-height: 100vh;
       background: linear-gradient(135deg, #000000, #111111);
       padding: 2em;
-    }
-    header h1 {
-      font-family: 'Fira Code', monospace;
-      font-size: 3em;
-      margin-bottom: 1em;
+      text-align: center;
     }
     header img.typing {
       max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00ff00aa;
+      border-radius: 6px;
     }
     .badges {
       margin-top: 1.5em;
+      display: flex;
+      gap: 0.5em;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .badges img { margin: 0 0.4em; }
 
-    /* Sections */
+    /* SECTIONS */
     section {
       max-width: 1000px;
-      margin: 4em auto;
+      margin: 3em auto;
       padding: 2em;
       background: #111;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00ff0040;
+      border-radius: 10px;
+      text-align: left;
       animation: fadeIn 1s ease forwards;
     }
+    section h2 { margin-bottom: 1em; }
     pre {
       background-color: #000;
       padding: 1em;
-      border-radius: 8px;
+      border-radius: 6px;
       overflow-x: auto;
       font-family: 'Fira Code', monospace;
     }
-    .tech img { margin: 0.4em; }
-    .footer {
-      text-align: center;
-      margin: 4em 0 2em 0;
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5em;
+      margin-top: 1em;
     }
 
-    /* Animations */
+    .tech img { height: 40px; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      margin: 4em 0 2em;
+      font-weight: 500;
+    }
+
+    /* ANIMATIONS */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Responsive */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       header h1 { font-size: 2em; }
       section { margin: 2em 1em; padding: 1.5em; }
-      .tech img { width: 80px; margin: 0.3em; }
+      .tech img { height: 35px; }
+      header img.typing { max-width: 90%; }
     }
   </style>
 </head>
@@ -122,7 +136,7 @@
   <!-- TECH ARSENAL -->
   <section>
     <h2>⚙️ TECH ARSENAL</h2>
-    <p class="tech">
+    <div class="tech">
       <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00ff00" alt="React">
       <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00ff00" alt="React Native">
       <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00ff00" alt="TypeScript">
@@ -130,7 +144,7 @@
       <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00ff00" alt="Firebase">
       <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00ff00" alt="Node.js">
       <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00ff00" alt="Google Analytics">
-    </p>
+    </div>
   </section>
 
   <!-- APION PROTOCOL -->
@@ -149,10 +163,10 @@ apion:
   <!-- SYSTEM METRICS -->
   <section>
     <h2>📊 SYSTEM METRICS</h2>
-    <p>
+    <div class="tech">
       <img src="https://github-readme-stats.vercel.app/api?username=YOURUSERNAME&show_icons=true&theme=chartreuse-dark&hide_border=true" alt="GitHub Stats">
       <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOURUSERNAME&theme=chartreuse-dark&hide_border=true" alt="GitHub Streak">
-    </p>
+    </div>
   </section>
 
   <!-- CURRENT OPERATIONS -->
