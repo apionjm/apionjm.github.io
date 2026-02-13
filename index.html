@@ -8,29 +8,34 @@
 <style>
   /* --- Reset & Basics --- */
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Roboto', sans-serif; background:#0b0b0b; color:#00ff00; }
+  body { font-family:'Roboto', sans-serif; background:#0b0b0b; color:#00ff00; scroll-behavior:smooth; }
   a { color:#00ff00; text-decoration:none; }
   img { max-width:100%; height:auto; display:block; }
   h1,h2,h3 { text-align:center; }
 
-  /* --- Container & Sections --- */
-  .container { max-width:1200px; margin:auto; padding:2rem; }
-  section { background:#111; border-radius:15px; padding:2rem; margin:3rem 0; box-shadow:0 0 20px #00ff0040; animation:fadeIn 1s ease forwards; }
-  @keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+  /* --- Sections & Containers --- */
+  section { padding:6rem 2rem; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .container { max-width:1200px; width:100%; margin:auto; }
 
-  /* --- Hero Section --- */
-  header { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; background:linear-gradient(135deg,#000,#111); text-align:center; }
-  header h1 { font-family:'Fira Code', monospace; font-size:3rem; margin-bottom:1rem; }
-  header img { border-radius:10px; box-shadow:0 0 20px #00ff0040; max-width:600px; }
+  /* --- Hero --- */
+  header { background:linear-gradient(135deg,#000,#111); display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; }
+  header h1 { font-family:'Fira Code', monospace; font-size:3rem; margin-bottom:1rem; animation:fadeIn 1s ease forwards; }
+  header img { max-width:600px; border-radius:10px; box-shadow:0 0 20px #00ff0040; margin-top:1rem; animation:fadeIn 1.5s ease forwards; }
 
   /* --- Badges --- */
-  .badges { display:flex; justify-content:center; gap:1rem; margin-top:1.5rem; flex-wrap:wrap; }
+  .badges { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+
+  /* --- Section Styling --- */
+  section { background:#111; border-radius:15px; box-shadow:0 0 20px #00ff0040; margin:2rem 0; transition:0.3s; }
+  section:hover { transform:translateY(-5px); }
+  section h2 { margin-bottom:2rem; font-size:2rem; }
+  section p, section pre { max-width:800px; text-align:center; margin:0 auto; font-family:'Fira Code', monospace; }
 
   /* --- Tech Grid --- */
-  .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1rem; justify-items:center; margin-top:1rem; }
+  .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1rem; justify-items:center; }
 
   /* --- Metrics --- */
-  .metrics img { margin:0.5rem; border-radius:10px; }
+  .metrics { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; margin-top:1rem; }
 
   /* --- Contact Cards --- */
   .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-top:1rem; }
@@ -38,10 +43,13 @@
   .contact-card:hover { box-shadow:0 0 20px #00ff00; transform:translateY(-5px); }
 
   /* --- Footer --- */
-  footer { text-align:center; margin:4rem 0; }
+  footer { text-align:center; padding:3rem 2rem; }
+
+  /* --- Animations --- */
+  @keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
 
   /* --- Responsive --- */
-  @media(max-width:768px){ header h1{font-size:2rem;} section{padding:1.5rem;} }
+  @media(max-width:768px){ header h1{font-size:2rem;} section{padding:3rem 1.5rem;} }
 </style>
 </head>
 <body>
@@ -98,22 +106,10 @@
   <section>
     <h2>📡 CONNECT</h2>
     <div class="contact-grid">
-      <div class="contact-card">
-        <h3>Email</h3>
-        <p>your@email.com</p>
-      </div>
-      <div class="contact-card">
-        <h3>Location</h3>
-        <p>Jamaica</p>
-      </div>
-      <div class="contact-card">
-        <h3>Brand</h3>
-        <p>Apion</p>
-      </div>
-      <div class="contact-card">
-        <h3>Status</h3>
-        <p>Available for Projects</p>
-      </div>
+      <div class="contact-card"><h3>Email</h3><p>your@email.com</p></div>
+      <div class="contact-card"><h3>Location</h3><p>Jamaica</p></div>
+      <div class="contact-card"><h3>Brand</h3><p>Apion</p></div>
+      <div class="contact-card"><h3>Status</h3><p>Available for Projects</p></div>
     </div>
   </section>
 
