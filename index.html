@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oshayne | Hacker Terminal</title>
+<title>Oshayne | Hacker Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
 <style>
   body {
@@ -11,28 +11,36 @@
     font-family:'Fira Code', monospace;
     background:#121212;
     color:#00f0ff;
-    overflow-y:auto;
     padding:1em;
   }
-  h1,h2,h3 { text-align:center; }
-  pre {
-    background:#121212;
-    border:2px solid #00f0ff;
-    border-radius:6px;
-    padding:1em;
-    max-width:800px;
-    margin:1em auto;
-    white-space:pre-wrap;
-    word-wrap:break-word;
-    font-size:1em;
-    min-height:3em;
-  }
+  h1,h2,h3 { text-align:center; margin-bottom:0.5em; }
   section {
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     margin-bottom:2em;
+    padding:1em;
+    border-radius:6px;
+    min-height:3em;
+    transition: border 0.5s ease;
+  }
+  .panel {
+    border: none; /* hidden initially */
+    max-width:900px;
+    width:100%;
+    background: #1a1a1a;
+  }
+  .panel.loaded {
+    border: 2px solid #00f0ff; /* show border once loaded */
+  }
+  pre {
+    background: transparent;
+    padding:0.5em;
+    white-space:pre-wrap;
+    word-wrap:break-word;
+    font-size:1em;
+    width:100%;
   }
   .tech img, .badges img {
     height:35px;
@@ -42,51 +50,50 @@
 </head>
 <body>
 
-<section id="header">
+<section id="header" class="panel">
   <h1 id="headerText"></h1>
   <div id="typingHeader"></div>
   <div class="badges" id="badges"></div>
 </section>
 
-<section id="boot">
+<section id="boot" class="panel">
   <pre id="bootText"></pre>
 </section>
 
-<section id="whoami">
+<section id="whoami" class="panel">
   <pre id="whoText"></pre>
 </section>
 
-<section id="metrics">
+<section id="metrics" class="panel">
   <h2 id="metricsTitle"></h2>
   <div id="metricsImages"></div>
 </section>
 
-<section id="tech">
+<section id="tech" class="panel">
   <h2 id="techTitle"></h2>
   <div class="tech" id="techIcons"></div>
 </section>
 
-<section id="protocol">
+<section id="protocol" class="panel">
   <h2 id="protocolTitle"></h2>
   <pre id="protocolText"></pre>
 </section>
 
-<section id="operations">
+<section id="operations" class="panel">
   <h2 id="opsTitle"></h2>
   <pre id="opsText"></pre>
 </section>
 
-<section id="connect">
+<section id="connect" class="panel">
   <h2 id="connectTitle"></h2>
   <pre id="connectText"></pre>
 </section>
 
-<section class="footer">
+<section class="footer panel">
   <h3 id="footerText"></h3>
 </section>
 
 <script>
-  // Typing helper
   function typeText(element, text, speed=30, callback) {
     let i = 0;
     element.innerHTML = '';
@@ -96,49 +103,44 @@
         i++;
         setTimeout(typing, speed);
       } else {
+        // mark panel as loaded after typing finishes
+        const parentPanel = element.closest('.panel');
+        if(parentPanel) parentPanel.classList.add('loaded');
         if (callback) callback();
       }
     }
     typing();
   }
 
-  // Sequence of sections
   function startTypingSequence() {
     typeText(document.getElementById('headerText'), "Hi 👋, I'm Oshayne", 50, () => {
       typeText(document.getElementById('typingHeader'),
         "Founder of Apion; Full Stack Engineer; Mobile App Architect; System Builder; Code is Life.",
         30, () => {
-          // Badges
           document.getElementById('badges').innerHTML = `
             <img src="https://komarev.com/ghpvc/?username=apionjm&label=PROFILE+VIEWS&color=00f0ff&style=flat">
             <img src="https://img.shields.io/github/followers/apionjm?label=FOLLOWERS&style=flat&color=00f0ff">
             <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00f0ff">
           `;
-          // Boot
-          const bootLines = `
+          typeText(document.getElementById('bootText'), `
 + SYSTEM BOOTING...
 + IDENTITY CONFIRMED: OSHAYNE
 + ROLE: FOUNDER @ APION
 + MODE: DARK
 + STATUS: BUILDING THE FUTURE
-          `;
-          typeText(document.getElementById('bootText'), bootLines, 30, () => {
-            // Who I am
-            const whoLines = `
+          `, 30, () => {
+            typeText(document.getElementById('whoText'), `
 > Founder of Apion
 > React & React Native Specialist
 > Firebase Engineer
 > Digital Growth Strategist
 > Code is life.
-            `;
-            typeText(document.getElementById('whoText'), whoLines, 30, () => {
-              // System Metrics
+            `, 30, () => {
               typeText(document.getElementById('metricsTitle'), "📊 System Metrics", 50, () => {
                 document.getElementById('metricsImages').innerHTML = `
                   <img src="https://github-readme-stats.vercel.app/api?username=apionjm&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff">
                   <img src="https://github-readme-streak-stats.herokuapp.com/?user=apionjm&theme=dark&hide_border=true&stroke=00f0ff">
                 `;
-                // Tech Arsenal
                 typeText(document.getElementById('techTitle'), "⚙️ Tech Arsenal", 50, () => {
                   document.getElementById('techIcons').innerHTML = `
                     <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
@@ -149,37 +151,30 @@
                     <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00f0ff">
                     <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00f0ff">
                   `;
-                  // Protocol
                   typeText(document.getElementById('protocolTitle'), "🛰 Apion Protocol", 50, () => {
-                    const protocolLines = `
+                    typeText(document.getElementById('protocolText'), `
 apion:
   focus: "Mobile Apps & Modern Web Platforms"
   architecture: "Scalable & Secure"
   strategy: "Data-Driven Growth"
   objective: "Dominate Markets"
   mindset: "Ship it. Improve it."
-                    `;
-                    typeText(document.getElementById('protocolText'), protocolLines, 30, () => {
-                      // Operations
+                    `, 30, () => {
                       typeText(document.getElementById('opsTitle'), "🔥 Current Operations", 50, () => {
-                        const opsLines = `
+                        typeText(document.getElementById('opsText'), `
 > Engineering mobile apps
 > Building dashboards
 > Integrating analytics
 > Exploring AI
 > Optimizing performance
-                        `;
-                        typeText(document.getElementById('opsText'), opsLines, 30, () => {
-                          // Connect
+                        `, 30, () => {
                           typeText(document.getElementById('connectTitle'), "📡 Connect", 50, () => {
-                            const connectLines = `
+                            typeText(document.getElementById('connectText'), `
 EMAIL: your@email.com
 LOCATION: JAMAICA
 BRAND: APION
 STATUS: AVAILABLE FOR PROJECTS
-                            `;
-                            typeText(document.getElementById('connectText'), connectLines, 30, () => {
-                              // Footer
+                            `, 30, () => {
                               typeText(document.getElementById('footerText'), `"Code. Adapt. Execute."`, 50);
                             });
                           });
