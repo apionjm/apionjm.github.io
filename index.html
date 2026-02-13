@@ -6,218 +6,196 @@
   <title>Oshayne | Apion</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* RESET */
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background:#121212;
       color:#00f0ff;
-      overflow:hidden;
+      line-height:1.5;
     }
     h1,h2,h3 { text-align:center; font-weight:700; }
     a { color:#00f0ff; text-decoration:none; }
     img { max-width:100%; display:block; }
 
-    /* GRID LAYOUT */
-    .container {
-      display:grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      grid-template-rows: auto 1fr auto;
-      gap:1em;
-      height:100vh;
-      padding:1em;
-    }
-
-    .panel {
-      background:#121212;
-      border: 2px solid #00f0ff;
-      border-radius:10px;
-      padding:1em;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      overflow:hidden;
-      font-size:0.9em;
-    }
-
-    /* HEADER PANEL */
-    .header-panel {
-      grid-column: span 3;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
+    /* CONTAINERS */
+    section, .footer {
+      max-width:900px;
+      margin:2em auto;
       padding:1.5em;
+      background:#121212;
+      border:2px solid #00f0ff;
+      border-radius:10px;
     }
-    .header-panel img.typing { max-width:500px; border-radius:6px; }
 
-    /* SYSTEM METRICS PANEL */
-    .metrics-panel {
-      grid-column: 2;
-      grid-row: 2;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:2em;
-      font-size:1.1em;
-      border:3px solid #00f0ff;
-      border-radius:12px;
+    /* HEADER */
+    header {
+      text-align:center;
+      margin-top:2em;
     }
-    .metrics-panel img {
+    header img.typing {
+      max-width:600px;
+      margin:1em auto;
+      border-radius:6px;
+      display:block;
+    }
+    .badges {
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:0.5em;
+      margin-top:1em;
+    }
+
+    /* SYSTEM METRICS */
+    .metrics img {
       width:95%;
       max-width:650px;
-      margin-bottom:1em;
-      border: 2px solid #00f0ff;
+      margin:1em auto;
+      border:2px solid #00f0ff;
       border-radius:6px;
+      display:block;
     }
 
-    /* TECH PANEL */
+    /* TECH */
     .tech {
       display:flex;
       flex-wrap:wrap;
-      gap:0.3em;
       justify-content:center;
+      gap:0.5em;
+      margin-top:1em;
     }
     .tech img { height:35px; }
 
+    /* PRE BLOCKS */
     pre {
-      background-color:#121212;
+      background:#121212;
       padding:0.8em;
       border-radius:6px;
       overflow:auto;
       font-family:'Fira Code', monospace;
-      flex:1;
     }
 
     /* FOOTER */
     .footer {
-      grid-column: span 3;
       text-align:center;
       font-weight:500;
       font-size:1em;
-      padding-top:0.5em;
+      margin-bottom:2em;
     }
 
-    /* PANEL ANIMATION */
-    .panel:hover {
-      border-color: #00ffff;
-      transition: border-color 0.3s ease-in-out;
+    /* HOVER EFFECTS */
+    section:hover, .footer:hover {
+      border-color:#00ffff;
+      transition:border-color 0.3s ease-in-out;
     }
 
     /* RESPONSIVE */
-    @media(max-width:1200px) {
-      .container { grid-template-columns: 1fr 1fr; grid-template-rows:auto; height:auto; }
-      .metrics-panel { grid-column: span 2; }
-    }
-    @media(max-width:768px) {
-      .container { grid-template-columns:1fr; }
-      .metrics-panel { grid-column: span 1; }
-      .header-panel img.typing { max-width:90%; }
+    @media(max-width:768px){
+      header img.typing { max-width:90%; }
+      .metrics img { width:100%; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- HEADER -->
-    <div class="panel header-panel">
-      <h1>Hi 👋, I'm Oshayne</h1>
-      <img class="typing" src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=500&lines=Founder+of+Apion;Full+Stack+Engineer;Mobile+App+Architect;System+Builder;Code+is+Life." alt="Typing Effect">
-      <div class="tech">
-        <img src="https://komarev.com/ghpvc/?username=YOURUSERNAME&label=PROFILE+VIEWS&color=00f0ff&style=flat" alt="Profile Views">
-        <img src="https://img.shields.io/github/followers/YOURUSERNAME?label=FOLLOWERS&style=flat&color=00f0ff" alt="Followers">
-        <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00f0ff" alt="Status">
-      </div>
+  <!-- HEADER -->
+  <header>
+    <h1>Hi 👋, I'm Oshayne</h1>
+    <img class="typing" src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=500&lines=Founder+of+Apion;Full+Stack+Engineer;Mobile+App+Architect;System+Builder;Code+is+Life." alt="Typing Effect">
+    <div class="badges">
+      <img src="https://komarev.com/ghpvc/?username=YOURUSERNAME&label=PROFILE+VIEWS&color=00f0ff&style=flat" alt="Profile Views">
+      <img src="https://img.shields.io/github/followers/YOURUSERNAME?label=FOLLOWERS&style=flat&color=00f0ff" alt="Followers">
+      <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00f0ff" alt="Status">
     </div>
+  </header>
 
-    <!-- SYSTEM BOOT -->
-    <div class="panel">
-      <h2>System Boot</h2>
-      <pre>
+  <!-- SYSTEM BOOT -->
+  <section>
+    <h2>System Boot</h2>
+    <pre>
 + SYSTEM BOOTING...
 + IDENTITY CONFIRMED: OSHAYNE
 + ROLE: FOUNDER @ APION
 + MODE: DARK
 + STATUS: BUILDING THE FUTURE
-      </pre>
-    </div>
+    </pre>
+  </section>
 
-    <!-- WHO I AM -->
-    <div class="panel">
-      <h2>Who I Am</h2>
-      <pre>
+  <!-- WHO I AM -->
+  <section>
+    <h2>Who I Am</h2>
+    <pre>
 > Founder of Apion
 > React & React Native Specialist
 > Firebase Engineer
 > Digital Growth Strategist
 > Code is life.
-      </pre>
-    </div>
+    </pre>
+  </section>
 
-    <!-- SYSTEM METRICS -->
-    <div class="panel metrics-panel">
-      <h2>📊 System Metrics</h2>
-      <img src="https://github-readme-stats.vercel.app/api?username=YOURUSERNAME&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff" alt="GitHub Stats">
-      <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOURUSERNAME&theme=dark&hide_border=true&stroke=00f0ff" alt="GitHub Streak">
-    </div>
+  <!-- SYSTEM METRICS -->
+  <section class="metrics">
+    <h2>📊 System Metrics</h2>
+    <img src="https://github-readme-stats.vercel.app/api?username=YOURUSERNAME&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff" alt="GitHub Stats">
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOURUSERNAME&theme=dark&hide_border=true&stroke=00f0ff" alt="GitHub Streak">
+  </section>
 
-    <!-- TECH ARSENAL -->
-    <div class="panel">
-      <h2>Tech Arsenal</h2>
-      <div class="tech">
-        <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff" alt="React">
-        <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00f0ff" alt="React Native">
-        <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00f0ff" alt="TypeScript">
-        <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00f0ff" alt="JavaScript">
-        <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00f0ff" alt="Firebase">
-        <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00f0ff" alt="Node.js">
-        <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00f0ff" alt="Google Analytics">
-      </div>
+  <!-- TECH ARSENAL -->
+  <section>
+    <h2>Tech Arsenal</h2>
+    <div class="tech">
+      <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff" alt="React">
+      <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00f0ff" alt="React Native">
+      <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00f0ff" alt="TypeScript">
+      <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00f0ff" alt="JavaScript">
+      <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00f0ff" alt="Firebase">
+      <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00f0ff" alt="Node.js">
+      <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00f0ff" alt="Google Analytics">
     </div>
+  </section>
 
-    <!-- APION PROTOCOL -->
-    <div class="panel">
-      <h2>Apion Protocol</h2>
-      <pre>
+  <!-- APION PROTOCOL -->
+  <section>
+    <h2>Apion Protocol</h2>
+    <pre>
 apion:
   focus: "Mobile Apps & Modern Web Platforms"
   architecture: "Scalable & Secure"
   strategy: "Data-Driven Growth"
   objective: "Dominate Markets"
   mindset: "Ship it. Improve it."
-      </pre>
-    </div>
+    </pre>
+  </section>
 
-    <!-- CURRENT OPERATIONS -->
-    <div class="panel">
-      <h2>Current Operations</h2>
-      <pre>
+  <!-- CURRENT OPERATIONS -->
+  <section>
+    <h2>Current Operations</h2>
+    <pre>
 > Engineering mobile apps
 > Building dashboards
 > Integrating analytics
 > Exploring AI
 > Optimizing performance
-      </pre>
-    </div>
+    </pre>
+  </section>
 
-    <!-- CONNECT -->
-    <div class="panel">
-      <h2>Connect</h2>
-      <pre>
+  <!-- CONNECT -->
+  <section>
+    <h2>Connect</h2>
+    <pre>
 EMAIL: your@email.com
 LOCATION: JAMAICA
 BRAND: APION
 STATUS: AVAILABLE FOR PROJECTS
-      </pre>
-    </div>
+    </pre>
+  </section>
 
-    <!-- FOOTER -->
-    <div class="panel footer">
-      <img src="https://capsule-render.vercel.app/api?type=waving&color=00f0ff&height=80&section=footer" alt="Footer Capsule">
-      <h3>"Code. Adapt. Execute."</h3>
-    </div>
-
+  <!-- FOOTER -->
+  <div class="footer">
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=00f0ff&height=80&section=footer" alt="Footer Capsule">
+    <h3>"Code. Adapt. Execute."</h3>
   </div>
+
 </body>
 </html>
