@@ -14,71 +14,76 @@
     padding:1em;
   }
 
-  h1,h2,h3 { text-align:center; margin-bottom:0.5em; }
+  h1,h2,h3 {
+    margin:0.5em 0;
+    text-align:center;
+  }
 
   /* GRID LAYOUT FOR DASHBOARD */
   .dashboard {
     display: grid;
-    grid-template-columns: 1fr; /* single column mobile default */
+    grid-template-columns: 1fr;
     gap: 1.5em;
   }
 
   @media (min-width: 900px) {
     .dashboard {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns on desktop */
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1300px) {
     .dashboard {
-      grid-template-columns: repeat(3, 1fr); /* 3 columns wide screens */
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
   section {
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
     padding:1em;
     border-radius:8px;
-    min-height:4em;
-    transition: border 0.5s ease;
-    background: #1a1a1a;
+    min-height:6em;
+    background:#1a1a1a;
+    transition:border 0.5s ease, transform 0.3s ease;
   }
 
   .panel {
-    border: none; /* hidden initially */
+    border:none;
   }
 
   .panel.loaded {
     border: 2px solid #00f0ff;
+    transform:scale(1.02);
   }
 
   pre {
-    background: transparent;
+    background:transparent;
     padding:0.5em;
     white-space:pre-wrap;
     word-wrap:break-word;
     font-size:1em;
     width:100%;
+    text-align:left;
   }
 
-  .tech img, .badges img {
+  .tech img, .badges img, #metricsImages img {
     height:35px;
     margin:0.3em;
   }
 
-  /* Optional: center header full width */
-  #header {
-    grid-column: 1 / -1;
+  /* FULL WIDTH HEADER/FOOTER */
+  #header, .footer {
+    grid-column:1 / -1;
   }
 
-  /* Optional: footer full width */
-  .footer {
-    grid-column: 1 / -1;
+  /* Additional styling for code blocks */
+  section pre {
+    border-left: 3px solid #00f0ff;
+    padding-left: 0.5em;
   }
-
 </style>
 </head>
 <body>
@@ -129,88 +134,86 @@
 </div>
 
 <script>
-  function typeText(element, text, speed=30, callback) {
-    let i = 0;
-    element.innerHTML = '';
-    function typing() {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, speed);
-      } else {
-        const parentPanel = element.closest('.panel');
-        if(parentPanel) parentPanel.classList.add('loaded');
-        if (callback) callback();
-      }
+function typeText(element, text, speed=30, callback) {
+  let i=0;
+  element.innerHTML='';
+  function typing() {
+    if(i<text.length){
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing,speed);
+    } else {
+      const parent = element.closest('.panel');
+      if(parent) parent.classList.add('loaded');
+      if(callback) callback();
     }
-    typing();
   }
+  typing();
+}
 
-  function startTypingSequence() {
-    typeText(document.getElementById('headerText'), "Hi 👋, I'm Oshayne", 50, () => {
-      typeText(document.getElementById('typingHeader'),
-        "Founder of Apion; Full Stack Engineer; Mobile App Architect; System Builder; Code is Life.",
-        30, () => {
-          document.getElementById('badges').innerHTML = `
-            <img src="https://komarev.com/ghpvc/?username=apionjm&label=PROFILE+VIEWS&color=00f0ff&style=flat">
-            <img src="https://img.shields.io/github/followers/apionjm?label=FOLLOWERS&style=flat&color=00f0ff">
-            <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00f0ff">
-          `;
-          typeText(document.getElementById('bootText'), `
+function startTypingSequence(){
+  typeText(document.getElementById('headerText'), "Hi 👋, I'm Oshayne",50,()=>{
+    typeText(document.getElementById('typingHeader'), 
+      "Founder of Apion; Full Stack Engineer; Mobile App Architect; System Builder; Code is Life.",30,()=>{
+        document.getElementById('badges').innerHTML=`
+          <img src="https://komarev.com/ghpvc/?username=apionjm&label=PROFILE+VIEWS&color=00f0ff&style=flat">
+          <img src="https://img.shields.io/github/followers/apionjm?label=FOLLOWERS&style=flat&color=00f0ff">
+          <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00f0ff">
+        `;
+        typeText(document.getElementById('bootText'), `
 + SYSTEM BOOTING...
 + IDENTITY CONFIRMED: OSHAYNE
 + ROLE: FOUNDER @ APION
 + MODE: DARK
 + STATUS: BUILDING THE FUTURE
-          `, 30, () => {
-            typeText(document.getElementById('whoText'), `
+        `,30,()=>{
+          typeText(document.getElementById('whoText'), `
 > Founder of Apion
 > React & React Native Specialist
 > Firebase Engineer
 > Digital Growth Strategist
 > Code is life.
-            `, 30, () => {
-              typeText(document.getElementById('metricsTitle'), "📊 System Metrics", 50, () => {
-                document.getElementById('metricsImages').innerHTML = `
-                  <img src="https://github-readme-stats.vercel.app/api?username=apionjm&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff">
-                  <img src="https://github-readme-streak-stats.herokuapp.com/?user=apionjm&theme=dark&hide_border=true&stroke=00f0ff">
+          `,30,()=>{
+            typeText(document.getElementById('metricsTitle'), "📊 System Metrics",50,()=>{
+              document.getElementById('metricsImages').innerHTML=`
+                <img src="https://github-readme-stats.vercel.app/api?username=apionjm&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff">
+                <img src="https://github-readme-streak-stats.herokuapp.com/?user=apionjm&theme=dark&hide_border=true&stroke=00f0ff">
+              `;
+              typeText(document.getElementById('techTitle'),"⚙️ Tech Arsenal",50,()=>{
+                document.getElementById('techIcons').innerHTML=`
+                  <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
+                  <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
+                  <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00f0ff">
+                  <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00f0ff">
+                  <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00f0ff">
+                  <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00f0ff">
+                  <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00f0ff">
                 `;
-                typeText(document.getElementById('techTitle'), "⚙️ Tech Arsenal", 50, () => {
-                  document.getElementById('techIcons').innerHTML = `
-                    <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
-                    <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
-                    <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00f0ff">
-                    <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00f0ff">
-                    <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00f0ff">
-                    <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00f0ff">
-                    <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00f0ff">
-                  `;
-                  typeText(document.getElementById('protocolTitle'), "🛰 Apion Protocol", 50, () => {
-                    typeText(document.getElementById('protocolText'), `
+                typeText(document.getElementById('protocolTitle'),"🛰 Apion Protocol",50,()=>{
+                  typeText(document.getElementById('protocolText'),`
 apion:
   focus: "Mobile Apps & Modern Web Platforms"
   architecture: "Scalable & Secure"
   strategy: "Data-Driven Growth"
   objective: "Dominate Markets"
   mindset: "Ship it. Improve it."
-                    `, 30, () => {
-                      typeText(document.getElementById('opsTitle'), "🔥 Current Operations", 50, () => {
-                        typeText(document.getElementById('opsText'), `
+                  `,30,()=>{
+                    typeText(document.getElementById('opsTitle'),"🔥 Current Operations",50,()=>{
+                      typeText(document.getElementById('opsText'),`
 > Engineering mobile apps
 > Building dashboards
 > Integrating analytics
 > Exploring AI
 > Optimizing performance
-                        `, 30, () => {
-                          typeText(document.getElementById('connectTitle'), "📡 Connect", 50, () => {
-                            typeText(document.getElementById('connectText'), `
+                      `,30,()=>{
+                        typeText(document.getElementById('connectTitle'),"📡 Connect",50,()=>{
+                          typeText(document.getElementById('connectText'),`
 EMAIL: oshayne@apionlabs.org
 LOCATION: JAMAICA
 BRAND: APION
 STATUS: AVAILABLE FOR PROJECTS
-                            `, 30, () => {
-                              typeText(document.getElementById('footerText'), `"Code. Adapt. Execute."`, 50);
-                            });
+                          `,30,()=>{
+                            typeText(document.getElementById('footerText'), `"Code. Adapt. Execute."`,50);
                           });
                         });
                       });
@@ -221,10 +224,11 @@ STATUS: AVAILABLE FOR PROJECTS
             });
           });
         });
-    });
-  }
+      });
+  });
+}
 
-  startTypingSequence();
+startTypingSequence();
 </script>
 
 </body>
