@@ -6,198 +6,195 @@
   <title>Oshayne | Apion</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* RESET & BASICS */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background-color: #0d0d0d;
       color: #00ff00;
-      scroll-behavior: smooth;
-      line-height: 1.6;
+      overflow: hidden;
     }
+    h1,h2,h3 { text-align: center; font-weight: 700; }
     a { color: #00ff00; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
-    h1, h2, h3 { text-align: center; font-weight: 700; }
-    h1 { font-family: 'Fira Code', monospace; font-size: 3em; margin-bottom: 1em; }
+    /* GRID LAYOUT */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 1em;
+      height: 100vh;
+      padding: 1em;
+    }
+    .panel {
+      background: #111;
+      border-radius: 8px;
+      padding: 1em;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 0.9em;
+    }
 
-    /* HEADER */
-    header {
+    /* HEADER PANEL */
+    .header-panel {
+      grid-column: span 3;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #000000, #111111);
-      padding: 2em;
       text-align: center;
+      padding: 1.5em;
     }
-    header img.typing {
-      max-width: 600px;
-      border-radius: 6px;
-    }
-    .badges {
-      margin-top: 1.5em;
-      display: flex;
-      gap: 0.5em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    .header-panel img.typing { max-width: 500px; border-radius: 6px; }
 
-    /* SECTIONS */
-    section {
-      max-width: 1000px;
-      margin: 3em auto;
-      padding: 2em;
-      background: #111;
-      border-radius: 10px;
-      text-align: left;
-      animation: fadeIn 1s ease forwards;
-    }
-    section h2 { margin-bottom: 1em; }
-    pre {
-      background-color: #000;
-      padding: 1em;
-      border-radius: 6px;
-      overflow-x: auto;
-      font-family: 'Fira Code', monospace;
-    }
+    /* TECH PANEL */
     .tech {
       display: flex;
       flex-wrap: wrap;
+      gap: 0.3em;
       justify-content: center;
-      gap: 0.5em;
-      margin-top: 1em;
     }
+    .tech img { height: 30px; }
 
-    .tech img { height: 40px; }
+    pre {
+      background-color: #000;
+      padding: 0.8em;
+      border-radius: 6px;
+      overflow: auto;
+      font-family: 'Fira Code', monospace;
+      flex: 1;
+    }
 
     /* FOOTER */
     .footer {
+      grid-column: span 3;
       text-align: center;
-      margin: 4em 0 2em;
       font-weight: 500;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      font-size: 1em;
     }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header h1 { font-size: 2em; }
-      section { margin: 2em 1em; padding: 1.5em; }
-      .tech img { height: 35px; }
-      header img.typing { max-width: 90%; }
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        height: auto;
+      }
     }
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .header-panel img.typing { max-width: 90%; }
+    }
+
   </style>
 </head>
 <body>
+  <div class="container">
 
-  <!-- HEADER -->
-  <header>
-    <h1>Hi 👋, I'm Oshayne</h1>
-    <img class="typing" src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00FF00&center=true&vCenter=true&width=600&lines=Founder+of+Apion;Full+Stack+Engineer;Mobile+App+Architect;System+Builder;Code+is+Life." alt="Typing Effect">
-    <div class="badges">
-      <img src="https://komarev.com/ghpvc/?username=YOURUSERNAME&label=PROFILE+VIEWS&color=00ff00&style=flat" alt="Profile Views">
-      <img src="https://img.shields.io/github/followers/YOURUSERNAME?label=FOLLOWERS&style=flat&color=00ff00" alt="Followers">
-      <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00ff00" alt="Status">
+    <!-- HEADER -->
+    <div class="panel header-panel">
+      <h1>Hi 👋, I'm Oshayne</h1>
+      <img class="typing" src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00FF00&center=true&vCenter=true&width=500&lines=Founder+of+Apion;Full+Stack+Engineer;Mobile+App+Architect;System+Builder;Code+is+Life." alt="Typing Effect">
+      <div class="tech">
+        <img src="https://komarev.com/ghpvc/?username=YOURUSERNAME&label=PROFILE+VIEWS&color=00ff00&style=flat" alt="Profile Views">
+        <img src="https://img.shields.io/github/followers/YOURUSERNAME?label=FOLLOWERS&style=flat&color=00ff00" alt="Followers">
+        <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00ff00" alt="Status">
+      </div>
     </div>
-  </header>
 
-  <!-- SYSTEM BOOT -->
-  <section>
-    <pre>
+    <!-- SYSTEM BOOT -->
+    <div class="panel">
+      <h2>System Boot</h2>
+      <pre>
 + SYSTEM BOOTING...
 + IDENTITY CONFIRMED: OSHAYNE
 + ROLE: FOUNDER @ APION
 + MODE: DARK
 + STATUS: BUILDING THE FUTURE
-    </pre>
-  </section>
+      </pre>
+    </div>
 
-  <!-- WHO I AM -->
-  <section>
-    <h2>🧠 WHO I AM</h2>
-    <pre>
+    <!-- WHO I AM -->
+    <div class="panel">
+      <h2>Who I Am</h2>
+      <pre>
 > Founder of Apion
 > React & React Native Specialist
-> Firebase & Real-Time Database Engineer
-> Google Analytics Integration Expert
-> 5+ Years Social Media Marketing Experience
+> Firebase Engineer
 > Digital Growth Strategist
-> Problem Solver
 > Code is life.
-    </pre>
-  </section>
-
-  <!-- TECH ARSENAL -->
-  <section>
-    <h2>⚙️ TECH ARSENAL</h2>
-    <div class="tech">
-      <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00ff00" alt="React">
-      <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00ff00" alt="React Native">
-      <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00ff00" alt="TypeScript">
-      <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00ff00" alt="JavaScript">
-      <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00ff00" alt="Firebase">
-      <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00ff00" alt="Node.js">
-      <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00ff00" alt="Google Analytics">
+      </pre>
     </div>
-  </section>
 
-  <!-- APION PROTOCOL -->
-  <section>
-    <h2>🛰 APION PROTOCOL</h2>
-    <pre>
+    <!-- TECH ARSENAL -->
+    <div class="panel">
+      <h2>Tech Arsenal</h2>
+      <div class="tech">
+        <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00ff00" alt="React">
+        <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00ff00" alt="React Native">
+        <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00ff00" alt="TypeScript">
+        <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00ff00" alt="JavaScript">
+        <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00ff00" alt="Firebase">
+        <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00ff00" alt="Node.js">
+        <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00ff00" alt="Google Analytics">
+      </div>
+    </div>
+
+    <!-- APION PROTOCOL -->
+    <div class="panel">
+      <h2>Apion Protocol</h2>
+      <pre>
 apion:
   focus: "Mobile Apps & Modern Web Platforms"
-  architecture: "Scalable. Secure. High Performance."
-  strategy: "Data-Driven Growth Systems"
-  objective: "Build digital products that dominate markets."
-  mindset: "Figure it out. Ship it. Improve it."
-    </pre>
-  </section>
-
-  <!-- SYSTEM METRICS -->
-  <section>
-    <h2>📊 SYSTEM METRICS</h2>
-    <div class="tech">
-      <img src="https://github-readme-stats.vercel.app/api?username=YOURUSERNAME&show_icons=true&theme=chartreuse-dark&hide_border=true" alt="GitHub Stats">
-      <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOURUSERNAME&theme=chartreuse-dark&hide_border=true" alt="GitHub Streak">
+  architecture: "Scalable & Secure"
+  strategy: "Data-Driven Growth"
+  objective: "Dominate Markets"
+  mindset: "Ship it. Improve it."
+      </pre>
     </div>
-  </section>
 
-  <!-- CURRENT OPERATIONS -->
-  <section>
-    <h2>🔥 CURRENT OPERATIONS</h2>
-    <pre>
-> Engineering scalable mobile applications
-> Building admin dashboards
-> Integrating analytics & tracking systems
-> Exploring AI & automation
+    <!-- SYSTEM METRICS -->
+    <div class="panel">
+      <h2>System Metrics</h2>
+      <div class="tech">
+        <img src="https://github-readme-stats.vercel.app/api?username=YOURUSERNAME&show_icons=true&theme=chartreuse-dark&hide_border=true" alt="GitHub Stats">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOURUSERNAME&theme=chartreuse-dark&hide_border=true" alt="GitHub Streak">
+      </div>
+    </div>
+
+    <!-- CURRENT OPERATIONS -->
+    <div class="panel">
+      <h2>Current Operations</h2>
+      <pre>
+> Engineering mobile apps
+> Building dashboards
+> Integrating analytics
+> Exploring AI
 > Optimizing performance
-> Breaking limits
-    </pre>
-  </section>
+      </pre>
+    </div>
 
-  <!-- CONNECT -->
-  <section>
-    <h2>📡 CONNECT</h2>
-    <pre>
-EMAIL: oshayne@apionlabs.org
+    <!-- CONNECT -->
+    <div class="panel">
+      <h2>Connect</h2>
+      <pre>
+EMAIL: your@email.com
 LOCATION: JAMAICA
 BRAND: APION
 STATUS: AVAILABLE FOR PROJECTS
-    </pre>
-  </section>
+      </pre>
+    </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=00ff00&height=100&section=footer" alt="Footer Capsule">
-    <h3>"Code. Adapt. Execute."</h3>
+    <!-- FOOTER -->
+    <div class="panel footer">
+      <img src="https://capsule-render.vercel.app/api?type=waving&color=00ff00&height=80&section=footer" alt="Footer Capsule">
+      <h3>"Code. Adapt. Execute."</h3>
+    </div>
+
   </div>
-
 </body>
 </html>
