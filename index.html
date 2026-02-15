@@ -229,7 +229,169 @@ STATUS: AVAILABLE FOR PROJECTS
 }
 
 startTypingSequence();
+</script<script>
+const sections = [
+  "header",
+  "boot",
+  "whoami",
+  "metrics",
+  "tech",
+  "protocol",
+  "operations",
+  "connect",
+  "footer"
+];
+
+let currentSection = 0;
+
+/* TYPEWRITER */
+function typeText(element, text, speed=30, callback) {
+  let i=0;
+  element.innerHTML='';
+  function typing() {
+    if(i<text.length){
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing,speed);
+    } else {
+      const parent = element.closest('.panel');
+      if(parent) parent.classList.add('loaded');
+      if(callback) callback();
+    }
+  }
+  typing();
+}
+
+/* CREATE TERMINAL INPUT */
+function createInputGate(callback){
+  const gate = document.createElement("div");
+  gate.style.marginTop = "1em";
+  gate.innerHTML = `
+    <pre>> Type "next" to continue...</pre>
+    <input id="terminalInput" 
+           style="background:#000;color:#00f0ff;border:1px solid #00f0ff;
+                  padding:5px;font-family:'Fira Code';width:100%;">
+  `;
+  document.querySelectorAll('.panel')[currentSection].appendChild(gate);
+
+  const input = gate.querySelector("#terminalInput");
+  input.focus();
+
+  input.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      if(input.value.trim().toLowerCase() === "next"){
+        gate.remove();
+        currentSection++;
+        callback();
+      } else {
+        input.value="";
+      }
+    }
+  });
+}
+
+/* SECTIONS CONTENT */
+function loadSection(index){
+  if(index >= sections.length) return;
+
+  switch(sections[index]){
+
+    case "header":
+      typeText(document.getElementById('headerText'), "Hi 👋, I'm Oshayne",40,()=>{
+        typeText(document.getElementById('typingHeader'),
+          "Founder of Apion; Full Stack Engineer; Mobile App Architect; System Builder; Code is Life.",25,()=>{
+            createInputGate(()=>loadSection(currentSection));
+          });
+      });
+    break;
+
+    case "boot":
+      typeText(document.getElementById('bootText'), `
++ SYSTEM BOOTING...
++ IDENTITY CONFIRMED
++ ROLE: FOUNDER @ APION
++ STATUS: BUILD MODE
+      `,25,()=>{
+        createInputGate(()=>loadSection(currentSection));
+      });
+    break;
+
+    case "whoami":
+      typeText(document.getElementById('whoText'), `
+> Founder of Apion
+> React & React Native Specialist
+> Firebase Engineer
+> Code is life.
+      `,25,()=>{
+        createInputGate(()=>loadSection(currentSection));
+      });
+    break;
+
+    case "metrics":
+      typeText(document.getElementById('metricsTitle'),"📊 System Metrics",40,()=>{
+        document.getElementById('metricsImages').innerHTML=`
+          <img src="https://github-readme-stats.vercel.app/api?username=apionjm&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff">
+        `;
+        createInputGate(()=>loadSection(currentSection));
+      });
+    break;
+
+    case "tech":
+      typeText(document.getElementById('techTitle'),"⚙️ Tech Arsenal",40,()=>{
+        document.getElementById('techIcons').innerHTML=`
+          <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
+          <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00f0ff">
+        `;
+        createInputGate(()=>loadSection(currentSection));
+      });
+    break;
+
+    case "protocol":
+      typeText(document.getElementById('protocolTitle'),"🛰 Apion Protocol",40,()=>{
+        typeText(document.getElementById('protocolText'),`
+apion:
+  focus: "Mobile Apps"
+  mindset: "Ship it. Improve it."
+        `,25,()=>{
+          createInputGate(()=>loadSection(currentSection));
+        });
+      });
+    break;
+
+    case "operations":
+      typeText(document.getElementById('opsTitle'),"🔥 Current Operations",40,()=>{
+        typeText(document.getElementById('opsText'),`
+> Engineering mobile apps
+> Building dashboards
+> Exploring AI
+        `,25,()=>{
+          createInputGate(()=>loadSection(currentSection));
+        });
+      });
+    break;
+
+    case "connect":
+      typeText(document.getElementById('connectTitle'),"📡 Connect",40,()=>{
+        typeText(document.getElementById('connectText'),`
+EMAIL: oshayne@apionlabs.org
+LOCATION: JAMAICA
+STATUS: AVAILABLE
+        `,25,()=>{
+          createInputGate(()=>loadSection(currentSection));
+        });
+      });
+    break;
+
+    case "footer":
+      typeText(document.getElementById('footerText'), `"Code. Adapt. Execute."`,40);
+    break;
+  }
+}
+
+/* START */
+loadSection(currentSection);
 </script>
+
 
 </body>
 </html>
