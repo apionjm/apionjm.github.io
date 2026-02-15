@@ -20,8 +20,9 @@
   }
 
   .panel {
-    display:none; /* hide all by default */
-    height:100vh; /* full viewport height */
+    position:absolute;
+    top:0; left:0;
+    height:100vh;
     width:100vw;
     padding:2em;
     box-sizing:border-box;
@@ -29,12 +30,15 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    transition:opacity 0.5s ease;
     background:#121212;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.8s ease;
   }
 
   .panel.active {
-    display:flex;
+    opacity:1;
+    pointer-events:auto;
   }
 
   pre {
@@ -143,7 +147,7 @@ function typeText(element, text, speed=30, callback){
   typing();
 }
 
-/* INPUT GATE */
+/* INPUT GATE WITH FADE */
 function createInputGate(callback){
   const panel = document.getElementById(sections[currentSection]);
   const gate = document.createElement('div');
@@ -157,12 +161,13 @@ function createInputGate(callback){
     if(e.key === "Enter"){
       if(input.value.trim().toLowerCase() === "next"){
         gate.remove();
-        // hide current panel
+        // FADE OUT CURRENT PANEL
         panel.classList.remove('active');
         currentSection++;
         if(currentSection < sections.length){
           const nextPanel = document.getElementById(sections[currentSection]);
-          nextPanel.classList.add('active');
+          // small delay to allow fade effect
+          setTimeout(()=> nextPanel.classList.add('active'), 100);
         }
         callback();
       } else {
