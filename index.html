@@ -11,56 +11,30 @@
     font-family:'Fira Code', monospace;
     background:#121212;
     color:#00f0ff;
-    padding:1em;
+    overflow:hidden;
   }
 
   h1,h2,h3 {
     margin:0.5em 0;
     text-align:center;
   }
-  #metrics {
-  grid-column: 1 / -1; /* span full width */
-  min-height: 20em;    /* bigger height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
-#metricsImages img {
-  height: 120px;       /* larger images */
-  margin: 0.5em;
-}
-
-
-  .dashboard {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5em;
-  }
-
-  @media (min-width: 900px) {
-    .dashboard { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1300px) {
-    .dashboard { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  section {
+  .panel {
+    display:none; /* hide all by default */
+    height:100vh; /* full viewport height */
+    width:100vw;
+    padding:2em;
+    box-sizing:border-box;
     display:flex;
     flex-direction:column;
-    justify-content:flex-start;
+    justify-content:center;
     align-items:center;
-    padding:1em;
-    border-radius:8px;
-    min-height:6em;
-    background:#1a1a1a;
-    transition:border 0.5s ease, transform 0.3s ease;
+    transition:opacity 0.5s ease;
+    background:#121212;
   }
 
-  .panel.loaded {
-    border: 2px solid #00f0ff;
-    transform:scale(1.02);
+  .panel.active {
+    display:flex;
   }
 
   pre {
@@ -78,9 +52,6 @@
     margin:0.3em;
   }
 
-  #header, .footer { grid-column:1 / -1; }
-
-  section pre { border-left: 3px solid #00f0ff; padding-left:0.5em; }
   input {
     background:#000;
     color:#00f0ff;
@@ -88,56 +59,65 @@
     padding:5px;
     font-family:'Fira Code';
     width:100%;
+    max-width:300px;
   }
-  .inputGate { margin-top:1em; text-align:center; width:100%; }
+
+  .inputGate {
+    margin-top:1em;
+    text-align:center;
+    width:100%;
+  }
+
+  #metricsImages img {
+    height:120px;
+    margin:0.5em;
+  }
 </style>
 </head>
 <body>
 
-<div class="dashboard">
-  <section id="header" class="panel">
-    <h1 id="headerText"></h1>
-    <div id="typingHeader"></div>
-    <div class="badges" id="badges"></div>
-  </section>
+<section id="header" class="panel active">
+  <h1 id="headerText"></h1>
+  <div id="typingHeader"></div>
+  <div class="badges" id="badges"></div>
+</section>
 
-  <section id="boot" class="panel">
-    <pre id="bootText"></pre>
-  </section>
+<section id="boot" class="panel">
+  <pre id="bootText"></pre>
+</section>
 
-  <section id="whoami" class="panel">
-    <pre id="whoText"></pre>
-  </section>
+<section id="whoami" class="panel">
+  <pre id="whoText"></pre>
+</section>
 
-  <section id="metrics" class="panel">
-    <h2 id="metricsTitle"></h2>
-    <div id="metricsImages"></div>
-  </section>
+<section id="metrics" class="panel">
+  <h2 id="metricsTitle"></h2>
+  <div id="metricsImages"></div>
+</section>
 
-  <section id="tech" class="panel">
-    <h2 id="techTitle"></h2>
-    <div class="tech" id="techIcons"></div>
-  </section>
+<section id="tech" class="panel">
+  <h2 id="techTitle"></h2>
+  <div class="tech" id="techIcons"></div>
+</section>
 
-  <section id="protocol" class="panel">
-    <h2 id="protocolTitle"></h2>
-    <pre id="protocolText"></pre>
-  </section>
+<section id="protocol" class="panel">
+  <h2 id="protocolTitle"></h2>
+  <pre id="protocolText"></pre>
+</section>
 
-  <section id="operations" class="panel">
-    <h2 id="opsTitle"></h2>
-    <pre id="opsText"></pre>
-  </section>
+<section id="operations" class="panel">
+  <h2 id="opsTitle"></h2>
+  <pre id="opsText"></pre>
+</section>
 
-  <section id="connect" class="panel">
-    <h2 id="connectTitle"></h2>
-    <pre id="connectText"></pre>
-  </section>
+<section id="connect" class="panel">
+  <h2 id="connectTitle"></h2>
+  <pre id="connectText"></pre>
+</section>
 
-  <section class="footer panel">
-    <h3 id="footerText"></h3>
-  </section>
-</div>
+<section id="footer" class="panel">
+  <h3 id="footerText"></h3>
+</section>
 
 <script>
 const sections = [
@@ -163,9 +143,9 @@ function typeText(element, text, speed=30, callback){
   typing();
 }
 
-/* CREATE INPUT GATE */
+/* INPUT GATE */
 function createInputGate(callback){
-  const panel = document.querySelectorAll('.panel')[currentSection];
+  const panel = document.getElementById(sections[currentSection]);
   const gate = document.createElement('div');
   gate.classList.add('inputGate');
   gate.innerHTML = `<pre>> Type "next" to continue...</pre><input id="terminalInput" />`;
@@ -177,7 +157,13 @@ function createInputGate(callback){
     if(e.key === "Enter"){
       if(input.value.trim().toLowerCase() === "next"){
         gate.remove();
+        // hide current panel
+        panel.classList.remove('active');
         currentSection++;
+        if(currentSection < sections.length){
+          const nextPanel = document.getElementById(sections[currentSection]);
+          nextPanel.classList.add('active');
+        }
         callback();
       } else {
         input.value = '';
@@ -294,6 +280,5 @@ STATUS: AVAILABLE FOR PROJECTS
 /* START SEQUENCE */
 loadSection(currentSection);
 </script>
-
 </body>
 </html>
