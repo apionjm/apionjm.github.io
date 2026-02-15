@@ -76,6 +76,15 @@
     height:120px;
     margin:0.5em;
   }
+
+  #credits {
+    margin-top:1em; 
+    font-size:0.8em; 
+    color:#00f0ff; 
+    opacity:0; 
+    transition:opacity 1s;
+    text-align:center;
+  }
 </style>
 </head>
 <body>
@@ -121,6 +130,7 @@
 
 <section id="footer" class="panel">
   <h3 id="footerText"></h3>
+  <p id="credits">Built with help from ChatGPT 🤖 | AI is a helper/partner, never the sole</p>
 </section>
 
 <script>
@@ -166,7 +176,6 @@ function createInputGate(callback){
         currentSection++;
         if(currentSection < sections.length){
           const nextPanel = document.getElementById(sections[currentSection]);
-          // small delay to allow fade effect
           setTimeout(()=> nextPanel.classList.add('active'), 100);
         }
         callback();
@@ -277,7 +286,10 @@ STATUS: AVAILABLE FOR PROJECTS
     break;
 
     case "footer":
-      typeText(document.getElementById('footerText'), `"Code. Adapt. Execute."`,40);
+      typeText(document.getElementById('footerText'), `"Code. Adapt. Execute."`,40, () => {
+        const credit = document.getElementById('credits');
+        setTimeout(()=> credit.style.opacity = 1, 500);
+      });
     break;
   }
 }
