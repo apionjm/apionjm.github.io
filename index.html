@@ -19,7 +19,6 @@
     text-align:center;
   }
 
-  /* GRID LAYOUT FOR DASHBOARD */
   .dashboard {
     display: grid;
     grid-template-columns: 1fr;
@@ -27,15 +26,10 @@
   }
 
   @media (min-width: 900px) {
-    .dashboard {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .dashboard { grid-template-columns: repeat(2, 1fr); }
   }
-
   @media (min-width: 1300px) {
-    .dashboard {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    .dashboard { grid-template-columns: repeat(3, 1fr); }
   }
 
   section {
@@ -48,10 +42,6 @@
     min-height:6em;
     background:#1a1a1a;
     transition:border 0.5s ease, transform 0.3s ease;
-  }
-
-  .panel {
-    border:none;
   }
 
   .panel.loaded {
@@ -74,16 +64,18 @@
     margin:0.3em;
   }
 
-  /* FULL WIDTH HEADER/FOOTER */
-  #header, .footer {
-    grid-column:1 / -1;
-  }
+  #header, .footer { grid-column:1 / -1; }
 
-  /* Additional styling for code blocks */
-  section pre {
-    border-left: 3px solid #00f0ff;
-    padding-left: 0.5em;
+  section pre { border-left: 3px solid #00f0ff; padding-left:0.5em; }
+  input {
+    background:#000;
+    color:#00f0ff;
+    border:1px solid #00f0ff;
+    padding:5px;
+    font-family:'Fira Code';
+    width:100%;
   }
+  .inputGate { margin-top:1em; text-align:center; width:100%; }
 </style>
 </head>
 <body>
@@ -134,118 +126,13 @@
 </div>
 
 <script>
-function typeText(element, text, speed=30, callback) {
-  let i=0;
-  element.innerHTML='';
-  function typing() {
-    if(i<text.length){
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing,speed);
-    } else {
-      const parent = element.closest('.panel');
-      if(parent) parent.classList.add('loaded');
-      if(callback) callback();
-    }
-  }
-  typing();
-}
-
-function startTypingSequence(){
-  typeText(document.getElementById('headerText'), "Hi 👋, I'm Oshayne",50,()=>{
-    typeText(document.getElementById('typingHeader'), 
-      "Founder of Apion; Full Stack Engineer; Mobile App Architect; System Builder; Code is Life.",30,()=>{
-        document.getElementById('badges').innerHTML=`
-          <img src="https://komarev.com/ghpvc/?username=apionjm&label=PROFILE+VIEWS&color=00f0ff&style=flat">
-          <img src="https://img.shields.io/github/followers/apionjm?label=FOLLOWERS&style=flat&color=00f0ff">
-          <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00f0ff">
-        `;
-        typeText(document.getElementById('bootText'), `
-+ SYSTEM BOOTING...
-+ IDENTITY CONFIRMED: OSHAYNE
-+ ROLE: FOUNDER @ APION
-+ MODE: DARK
-+ STATUS: BUILDING THE FUTURE
-        `,30,()=>{
-          typeText(document.getElementById('whoText'), `
-> Founder of Apion
-> React & React Native Specialist
-> Firebase Engineer
-> Digital Growth Strategist
-> Code is life.
-          `,30,()=>{
-            typeText(document.getElementById('metricsTitle'), "📊 System Metrics",50,()=>{
-              document.getElementById('metricsImages').innerHTML=`
-                <img src="https://github-readme-stats.vercel.app/api?username=apionjm&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff">
-                <img src="https://github-readme-streak-stats.herokuapp.com/?user=apionjm&theme=dark&hide_border=true&stroke=00f0ff">
-              `;
-              typeText(document.getElementById('techTitle'),"⚙️ Tech Arsenal",50,()=>{
-                document.getElementById('techIcons').innerHTML=`
-                  <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
-                  <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
-                  <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00f0ff">
-                  <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00f0ff">
-                  <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00f0ff">
-                  <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00f0ff">
-                  <img src="https://img.shields.io/badge/Google_Analytics-000000?style=for-the-badge&logo=googleanalytics&logoColor=00f0ff">
-                `;
-                typeText(document.getElementById('protocolTitle'),"🛰 Apion Protocol",50,()=>{
-                  typeText(document.getElementById('protocolText'),`
-apion:
-  focus: "Mobile Apps & Modern Web Platforms"
-  architecture: "Scalable & Secure"
-  strategy: "Data-Driven Growth"
-  objective: "Dominate Markets"
-  mindset: "Ship it. Improve it."
-                  `,30,()=>{
-                    typeText(document.getElementById('opsTitle'),"🔥 Current Operations",50,()=>{
-                      typeText(document.getElementById('opsText'),`
-> Engineering mobile apps
-> Building dashboards
-> Integrating analytics
-> Exploring AI
-> Optimizing performance
-                      `,30,()=>{
-                        typeText(document.getElementById('connectTitle'),"📡 Connect",50,()=>{
-                          typeText(document.getElementById('connectText'),`
-EMAIL: oshayne@apionlabs.org
-LOCATION: JAMAICA
-BRAND: APION
-STATUS: AVAILABLE FOR PROJECTS
-                          `,30,()=>{
-                            typeText(document.getElementById('footerText'), `"Code. Adapt. Execute."`,50);
-                          });
-                        });
-                      });
-                    });
-                  });
-                });
-              });
-            });
-          });
-        });
-      });
-  });
-}
-
-startTypingSequence();
-</script<script>
 const sections = [
-  "header",
-  "boot",
-  "whoami",
-  "metrics",
-  "tech",
-  "protocol",
-  "operations",
-  "connect",
-  "footer"
+  "header","boot","whoami","metrics","tech","protocol","operations","connect","footer"
 ];
-
 let currentSection = 0;
 
 /* TYPEWRITER */
-function typeText(element, text, speed=30, callback) {
+function typeText(element, text, speed=30, callback){
   let i=0;
   element.innerHTML='';
   function typing() {
@@ -262,44 +149,43 @@ function typeText(element, text, speed=30, callback) {
   typing();
 }
 
-/* CREATE TERMINAL INPUT */
+/* CREATE INPUT GATE */
 function createInputGate(callback){
-  const gate = document.createElement("div");
-  gate.style.marginTop = "1em";
-  gate.innerHTML = `
-    <pre>> Type "next" to continue...</pre>
-    <input id="terminalInput" 
-           style="background:#000;color:#00f0ff;border:1px solid #00f0ff;
-                  padding:5px;font-family:'Fira Code';width:100%;">
-  `;
-  document.querySelectorAll('.panel')[currentSection].appendChild(gate);
-
-  const input = gate.querySelector("#terminalInput");
+  const panel = document.querySelectorAll('.panel')[currentSection];
+  const gate = document.createElement('div');
+  gate.classList.add('inputGate');
+  gate.innerHTML = `<pre>> Type "next" to continue...</pre><input id="terminalInput" />`;
+  panel.appendChild(gate);
+  const input = gate.querySelector('input');
   input.focus();
 
-  input.addEventListener("keydown", function(e){
+  input.addEventListener('keydown', function(e){
     if(e.key === "Enter"){
       if(input.value.trim().toLowerCase() === "next"){
         gate.remove();
         currentSection++;
         callback();
       } else {
-        input.value="";
+        input.value = '';
       }
     }
   });
 }
 
-/* SECTIONS CONTENT */
+/* SECTION SEQUENCER */
 function loadSection(index){
   if(index >= sections.length) return;
 
   switch(sections[index]){
-
     case "header":
       typeText(document.getElementById('headerText'), "Hi 👋, I'm Oshayne",40,()=>{
         typeText(document.getElementById('typingHeader'),
           "Founder of Apion; Full Stack Engineer; Mobile App Architect; System Builder; Code is Life.",25,()=>{
+            document.getElementById('badges').innerHTML=`
+              <img src="https://komarev.com/ghpvc/?username=apionjm&label=PROFILE+VIEWS&color=00f0ff&style=flat">
+              <img src="https://img.shields.io/github/followers/apionjm?label=FOLLOWERS&style=flat&color=00f0ff">
+              <img src="https://img.shields.io/badge/STATUS-ACTIVE-000000?style=flat&color=00f0ff">
+            `;
             createInputGate(()=>loadSection(currentSection));
           });
       });
@@ -308,12 +194,11 @@ function loadSection(index){
     case "boot":
       typeText(document.getElementById('bootText'), `
 + SYSTEM BOOTING...
-+ IDENTITY CONFIRMED
++ IDENTITY CONFIRMED: OSHAYNE
 + ROLE: FOUNDER @ APION
-+ STATUS: BUILD MODE
-      `,25,()=>{
-        createInputGate(()=>loadSection(currentSection));
-      });
++ MODE: DARK
++ STATUS: BUILDING THE FUTURE
+      `,25,()=> createInputGate(()=>loadSection(currentSection)) );
     break;
 
     case "whoami":
@@ -321,16 +206,16 @@ function loadSection(index){
 > Founder of Apion
 > React & React Native Specialist
 > Firebase Engineer
+> Digital Growth Strategist
 > Code is life.
-      `,25,()=>{
-        createInputGate(()=>loadSection(currentSection));
-      });
+      `,25,()=> createInputGate(()=>loadSection(currentSection)) );
     break;
 
     case "metrics":
       typeText(document.getElementById('metricsTitle'),"📊 System Metrics",40,()=>{
         document.getElementById('metricsImages').innerHTML=`
           <img src="https://github-readme-stats.vercel.app/api?username=apionjm&show_icons=true&theme=dark&hide_border=true&title_color=00f0ff&icon_color=00f0ff&text_color=00f0ff">
+          <img src="https://github-readme-streak-stats.herokuapp.com/?user=apionjm&theme=dark&hide_border=true&stroke=00f0ff">
         `;
         createInputGate(()=>loadSection(currentSection));
       });
@@ -340,7 +225,11 @@ function loadSection(index){
       typeText(document.getElementById('techTitle'),"⚙️ Tech Arsenal",40,()=>{
         document.getElementById('techIcons').innerHTML=`
           <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
+          <img src="https://img.shields.io/badge/React_Native-000000?style=for-the-badge&logo=react&logoColor=00f0ff">
+          <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00f0ff">
+          <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00f0ff">
           <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00f0ff">
+          <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=00f0ff">
         `;
         createInputGate(()=>loadSection(currentSection));
       });
@@ -350,11 +239,12 @@ function loadSection(index){
       typeText(document.getElementById('protocolTitle'),"🛰 Apion Protocol",40,()=>{
         typeText(document.getElementById('protocolText'),`
 apion:
-  focus: "Mobile Apps"
+  focus: "Mobile Apps & Modern Web Platforms"
+  architecture: "Scalable & Secure"
+  strategy: "Data-Driven Growth"
+  objective: "Dominate Markets"
   mindset: "Ship it. Improve it."
-        `,25,()=>{
-          createInputGate(()=>loadSection(currentSection));
-        });
+        `,25,()=> createInputGate(()=>loadSection(currentSection)) );
       });
     break;
 
@@ -363,10 +253,10 @@ apion:
         typeText(document.getElementById('opsText'),`
 > Engineering mobile apps
 > Building dashboards
+> Integrating analytics
 > Exploring AI
-        `,25,()=>{
-          createInputGate(()=>loadSection(currentSection));
-        });
+> Optimizing performance
+        `,25,()=> createInputGate(()=>loadSection(currentSection)) );
       });
     break;
 
@@ -375,10 +265,9 @@ apion:
         typeText(document.getElementById('connectText'),`
 EMAIL: oshayne@apionlabs.org
 LOCATION: JAMAICA
-STATUS: AVAILABLE
-        `,25,()=>{
-          createInputGate(()=>loadSection(currentSection));
-        });
+BRAND: APION
+STATUS: AVAILABLE FOR PROJECTS
+        `,25,()=> createInputGate(()=>loadSection(currentSection)) );
       });
     break;
 
@@ -388,10 +277,9 @@ STATUS: AVAILABLE
   }
 }
 
-/* START */
+/* START SEQUENCE */
 loadSection(currentSection);
 </script>
-
 
 </body>
 </html>
